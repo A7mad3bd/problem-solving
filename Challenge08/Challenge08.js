@@ -28,8 +28,6 @@
 
 const customerAndAge = (obj) => {
   let arr = new Array();
-
-
     for (const [key, value] of Object.entries(obj)) {
       arr.push(`Customer Name :${key} , Age :${value}`); 
     }
@@ -154,7 +152,7 @@ const getStudents = (arr) => {
 module.exports = {
   customerAndAge,
   getEntries,
-  courses,
-  getInfo,
-  getStudents,
+  // courses,
+  // getInfo,
+  // getStudents,
 };
