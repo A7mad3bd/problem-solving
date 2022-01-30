@@ -106,7 +106,6 @@ const cvFormatter = (arr) => {
     let arr1 = arr;
 
     let arr2 = [];
-   
     for (let i = 0; i < arr.length; i++) {
 
         let fn = arr1[i].firstName;
@@ -114,15 +113,12 @@ const cvFormatter = (arr) => {
         let t = arr1[i].tech;
         let y = arr1[i].yearsOfExperience;
 
-
+    
         if (fn != null && ln != null && y > 1) {
             let fullName = fn + " " + ln;
            
-            arr1.push(fullName);
-            delete arr1.firstName;
-            delete arr1.lastName;
-            delete arr1.yearsOfExperience;
-
+            arr2.push({"fullName":fullName,"tech": t});
+            
         }
 
 
@@ -130,26 +126,21 @@ const cvFormatter = (arr) => {
 
             let fullName = fn;
             
-            arr1.push(fullName);
-            delete arr1.firstName;
-            delete arr1.lastName;
-            delete arr1.yearsOfExperience;
+            arr2.push({"fullName":fullName,"tech": t});
 
 
         }
         else if (fn == null && ln != null && y > 1) {
 
             let fullName = ln;
-            
-            arr1.push(fullName);
-            delete arr1.firstName;
-            delete arr1.lastName;
-            delete arr1.yearsOfExperience;
+
+            arr2.push({"fullName":fullName,"tech": t});
+
         }
-
-
-        return arr1;
     }
+console.log(arr2);
+        return  arr2;
+    
 
 
 };
@@ -388,4 +379,5 @@ data.grades[z].classes[e].avg=Math.round(agg);
 return arr;
 };
 
-module.exports = { objLat, cvFormatter, applicationsStatics, classesAvg };
+module.exports = { objLat, cvFormatter};
+// , applicationsStatics, classesAvg 
