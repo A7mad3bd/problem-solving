@@ -18,26 +18,35 @@
 
 // ------------------------
 
-const objLat = (obj) => {
-    let obj1 = {
-             firstName: 'Jaber ',
-             lastName: 'Saleh',
-             age: 67,
-             hobby: 'Gaming and Sleeping'
-         }
-         
-            let fN =  `my name is +  ${this.firstName[0].toUpperCase()}     ${this.lastName[0].toUpperCase()} + I am +${this.age}+ YO, and I love +${this.hobby}`;
-                
 
-        
-        }
-    
+const objLat = (obj) => {
+
+
+
+    this.name = obj.firstName;
+    this.lname = obj.lastName;
+    this.age = obj.age;
+    this.hop = obj.hobby;
+
+    const str = this.name;
+    const str2 = str[0].toUpperCase() + str.substring(1);
+
+
+    const str3 = this.lname;
+    const str4 = str3[0].toUpperCase() + str3.substring(1);
+
+    let z = `my name is ${str2} ${str4} I am ${this.age} YO, and I love ${this.hop}.`;
+    return z;
+
+}
+
 
 // 2) ---------------------
 //
 //  Rekey is receiving info about applicants for his startup company (as array of objects), containing first name,
 //  last name, age and technology they know.
 //  Rekey only cares about the full name and the technology if the applicant have more than one year of Experience
+//
 //
 //  Reformat the array of objects that you are receiving by returning a new array of objects that contain only
 //  fullName and tech if the applicant has more than one year of Experience
@@ -94,8 +103,55 @@ const objLat = (obj) => {
 
 // ------------------------
 const cvFormatter = (arr) => {
-    
-    // write your code here
+    let arr1 = arr;
+
+    let arr2 = [];
+   
+    for (let i = 0; i < arr.length; i++) {
+
+        let fn = arr1[i].firstName;
+        let ln = arr1[i].lastName;
+        let t = arr1[i].tech;
+        let y = arr1[i].yearsOfExperience;
+
+
+        if (fn != null && ln != null && y > 1) {
+            let fullName = fn + " " + ln;
+           
+            arr1.push(fullName);
+            delete arr1.firstName;
+            delete arr1.lastName;
+            delete arr1.yearsOfExperience;
+
+        }
+
+
+        else if (fn != null && ln == null && y > 1) {
+
+            let fullName = fn;
+            
+            arr1.push(fullName);
+            delete arr1.firstName;
+            delete arr1.lastName;
+            delete arr1.yearsOfExperience;
+
+
+        }
+        else if (fn == null && ln != null && y > 1) {
+
+            let fullName = ln;
+            
+            arr1.push(fullName);
+            delete arr1.firstName;
+            delete arr1.lastName;
+            delete arr1.yearsOfExperience;
+        }
+
+
+        return arr1;
+    }
+
+
 };
 
 // 3) ---------------------
@@ -119,7 +175,60 @@ const cvFormatter = (arr) => {
 
 // ------------------------
 const applicationsStatics = (arr) => {
-    // write your code here
+
+
+let arrobj=arr;
+
+let python_Devs=0;
+let javaScript_Devs=0;
+let dotNet_Devs=0;
+let java_Devs=0;
+let totalApplicants=0;
+let rejectedApplicants=1;
+
+for(let i=0;i<arrobj.length;i++){
+
+
+
+ if(arrobj[i].tech=="JS")
+{
+javaScript_Devs++;
+totalApplicants++;
+}
+else if(arrobj[i].tech==".Net")
+{
+dotNet_Devs++;
+totalApplicants++;
+}
+else if(arrobj[i].tech=="Python")
+{
+python_Devs++;
+totalApplicants++;
+}
+else if(arrobj[i].tech=="Java")
+{
+java_Devs++;
+totalApplicants++;
+}
+else 
+{
+rejectedApplicants++;
+}
+
+}
+
+let result = {
+    "dotNet_Devs": dotNet_Devs,
+    "javaScript_Devs": javaScript_Devs,
+    "java_Devs": java_Devs,
+    "python_Devs": python_Devs,
+    "totalApplicants": totalApplicants,
+    "rejectedApplicants": rejectedApplicants} 
+
+
+
+return result;
+
 };
 
 // 4) ---------------------
@@ -131,6 +240,9 @@ const applicationsStatics = (arr) => {
 //  then change the avg value for the class
 //  EX:
 
+
+
+ 
 let data = {
     SchoolName: "David Academy",
     Capacity: 1000,
@@ -244,7 +356,36 @@ let data = {
 //  2- You need to round the average to the nearest lower number 
 
 const classesAvg = (data) => {
-    // write your code here
+
+    let arr=[];
+    let col =0;
+    let agg;
+   
+for(let z=0;z<data.length;z++)
+{
+    for(let e=0;i<data.length;e++)
+
+    for(let o=0;o<data.grades[z].classes[e].classScores.length;o++ )
+    {
+
+        arr[o]=data.grades[z].classes[e].classScores[o];
+
+    }
+
+
+ for(let i=0;i<arr.length;i++)
+     {
+   col+=arr[i];
+   agg=col/data.length;
+
+}
+
+data.grades[z].classes[e].avg=Math.round(agg);
+
+
+}
+
+return arr;
 };
 
 module.exports = { objLat, cvFormatter, applicationsStatics, classesAvg };
